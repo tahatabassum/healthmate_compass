@@ -31,7 +31,7 @@ httpx==0.27.2                  # async HTTP (used by supabase-py and direct call
 
 # ── Utilities ────────────────────────────────────────────────────────────────
 python-dotenv==1.0.1           # load .env in local dev
-orjson==3.10.11                # fast JSON (used by FastAPI internally)
+orjson>=3.11.5                 # fast JSON (compatible with langgraph-sdk)
 
 # ── Testing ───────────────────────────────────────────────────────────────────
 pytest==8.3.3
