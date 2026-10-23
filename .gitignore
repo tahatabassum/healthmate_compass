@@ -1,0 +1,62 @@
+# ─── Secrets (NEVER commit) ───────────────────────────────────────────────────
+.env
+.env.*
+*.env
+**/.env
+**/.env.*
+!.env.example
+!**/.env.example
+
+# ─── Reference & Internal Brain Files ─────────────────────────────────────────
+stitch_healthmate_compass_app/
+brain.md
+
+# ─── Python ───────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.venv/
+venv/
+env/
+*venv*/
+**/*venv*/
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+**/.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+htmlcov/
+.coverage
+*.db
+*.sqlite3
+
+# ─── Uploads / user files (dev only) ─────────────────────────────────────────
+uploads/
+**/uploads/
+tmp_reports/
+*.log
+
+# ─── Node / frontend ──────────────────────────────────────────────────────────
+node_modules/
+**/node_modules/
+dist/
+**/dist/
+.vite/
+*.tsbuildinfo
+
+# ─── Supabase local ───────────────────────────────────────────────────────────
+supabase/.branches/
+supabase/.temp/
+
+# ─── OS ───────────────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ─── IDE ──────────────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp

@@ -1,0 +1,35 @@
+[
+  {
+    "id": "rescue_1122",
+    "name_en": "Rescue 1122 (Emergency Medical & Ambulance)",
+    "name_ur": "ریسکیو 1122 (ہنگامی طبی و ایمبولینس سروس)",
+    "phone": "1122",
+    "type": "emergency_medical",
+    "toll_free": true,
+    "hours": "24/7",
+    "source": "Government of Punjab Emergency Service Department",
+    "last_verified": "2026-10-21"
+  },
+  {
+    "id": "rozan_counseling",
+    "name_en": "Rozan Counseling Helpline",
+    "name_ur": "روزن ٹیلی کاؤنسلنگ ہیلپ لائن",
+    "phone": "0800-22444",
+    "type": "mental_health_crisis",
+    "toll_free": true,
+    "hours": "Mon-Sat 10:00 AM - 6:00 PM",
+    "source": "Rozan NGO Pakistan (Toll-Free National Helpline)",
+    "last_verified": "2026-10-21"
+  },
+  {
+    "id": "sehat_tahaffuz",
+    "name_en": "Sehat Tahaffuz Helpline (Humraaz Mental Health)",
+    "name_ur": "صحت تحفظ ہیلپ لائن (ہمراز ذہنی صحت سروس)",
+    "phone": "1166",
+    "type": "mental_health_crisis",
+    "toll_free": true,
+    "hours": "24/7",
+    "source": "Ministry of National Health Services, Regulations & Coordination, Pakistan",
+    "last_verified": "2026-10-21"
+  }
+]

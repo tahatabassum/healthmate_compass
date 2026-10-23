@@ -1,0 +1,71 @@
+﻿{
+  "_comment": "Emergency keyword/phrase list for the rule-based emergency engine. All matching is case-insensitive. The engine runs BEFORE any LLM call and must make ZERO LLM calls. When any term matches, show Rescue 1122 banner immediately.",
+  "_languages": ["en", "ur", "roman_ur"],
+  "action": {
+    "emergency_number": "1122",
+    "emergency_service": "Rescue 1122",
+    "instruction_en": "This sounds like a medical emergency. Please call Rescue 1122 immediately or go to the nearest emergency room.",
+    "instruction_ur": "یہ طبی ہنگامی صورتحال لگتی ہے۔ فوری طور پر ریسکیو 1122 پر کال کریں یا قریبی ہنگامی کمرے میں جائیں۔"
+  },
+  "terms": {
+    "en": [
+      "chest pain", "chest tightness", "chest pressure", "crushing chest",
+      "heart attack", "cardiac arrest", "heart failure",
+      "can't breathe", "cannot breathe", "trouble breathing", "difficulty breathing",
+      "shortness of breath", "not breathing", "stopped breathing",
+      "stroke", "facial droop", "face drooping", "arm weakness", "speech difficulty",
+      "sudden numbness", "sudden weakness", "sudden confusion",
+      "unconscious", "unresponsive", "passed out", "fainted", "fainting",
+      "seizure", "convulsion", "convulsing", "fits",
+      "severe bleeding", "heavy bleeding", "won't stop bleeding", "blood not stopping",
+      "overdose", "took too many pills", "too much medicine",
+      "poisoning", "poisoned", "swallowed poison",
+      "suicidal", "suicide", "want to die", "kill myself", "end my life",
+      "choking", "can't swallow", "airway blocked",
+      "severe allergic reaction", "anaphylaxis", "throat swelling", "lips swelling",
+      "head injury", "head trauma", "hit on head",
+      "broken bone", "bone sticking out",
+      "diabetic coma", "blood sugar very high", "blood sugar very low",
+      "drowning", "electric shock", "burned severely", "severe burn",
+      "high fever", "very high temperature", "40 degree fever", "104 fever",
+      "meningitis", "stiff neck with fever",
+      "sudden vision loss", "can't see", "sudden blindness",
+      "pregnant and bleeding", "miscarriage", "labor pain"
+    ],
+    "ur": [
+      "سینے میں درد", "سینے کا درد", "دل کا دورہ", "ہارٹ اٹیک",
+      "سانس نہیں آرہا", "سانس لینے میں تکلیف", "سانس بند ہو گئی",
+      "فالج", "بے ہوشی", "بے ہوش ہو گیا", "بے ہوش ہو گئی",
+      "دورہ", "مرگی کا دورہ", "جھٹکے آ رہے ہیں", "دورہ پڑا",
+      "شدید خون بہنا", "خون نہیں رک رہا",
+      "زہر کھا لیا", "زہریلی دوائی", "بہت زیادہ دوائی کھا لی",
+      "خودکشی", "خود کو نقصان", "مرنا چاہتا ہوں", "مرنا چاہتی ہوں",
+      "گلا بند ہو گیا", "الرجی کا شدید ردعمل",
+      "سر میں چوٹ", "بہت تیز بخار", "بہت زیادہ بخار",
+      "ذیابیطس کوما", "شوگر بہت زیادہ", "شوگر بہت کم",
+      "جلنا", "بجلی کا جھٹکا",
+      "حمل میں خون", "اسقاط حمل"
+    ],
+    "roman_ur": [
+      "seene mein dard", "seene ka dard", "dil ka daura", "heart attack",
+      "sans nahin aa raha", "sans nahin le sakta", "sans nahin le sakti",
+      "sans band ho gayi", "sans lene mein takleef",
+      "falij", "be hoshi", "be hosh ho gaya", "be hosh ho gayi",
+      "daura", "mirgi ka daura", "jhatke aa rahe hain",
+      "shadeed khoon behna", "khoon nahin ruk raha",
+      "zeher kha liya", "bahut zyada dawai kha li",
+      "khudkushi", "marna chahta hun", "marna chahti hun",
+      "gala band ho gaya", "shadeed allergy",
+      "sar mein chot", "bahut tez bukhar", "bahut zyada bukhar",
+      "sugar bahut zyada", "sugar bahut kam",
+      "jalna", "bijli ka jhatka",
+      "hamal mein khoon", "naqsaan karna"
+    ]
+  },
+  "regex_patterns": [
+    "\\b(1[0-9][0-9]|40)\\s*(degree|celsius|centigrade)?\\s*fever\\b",
+    "\\b(104|105|106)\\s*f(ahrenheit)?\\b",
+    "\\bbp\\s*(is\\s*)?([2-9]\\d{2}|1[89]\\d)\\b",
+    "\\bblood pressure\\s*(is\\s*)?([2-9]\\d{2}|1[89]\\d)\\b"
+  ]
+}

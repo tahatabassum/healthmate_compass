@@ -1,0 +1,89 @@
+{
+  "_comment": "Maps canonical test names and flag conditions to specialist types. Code-only — LLM may only confirm a specialty from the fixed enum, never invent one.",
+  "_specialty_enum": [
+    "General Physician", "Cardiologist", "Endocrinologist", "Nephrologist",
+    "Gastroenterologist", "Hematologist", "Dermatologist", "Neurologist",
+    "Pulmonologist", "Orthopedic", "ENT", "Ophthalmologist", "Gynecologist",
+    "Pediatrician", "Psychiatrist", "Urologist", "Rheumatologist", "Dentist"
+  ],
+  "default_specialty": "General Physician",
+  "test_to_specialty": {
+    "hemoglobin":       "Hematologist",
+    "wbc":              "Hematologist",
+    "platelets":        "Hematologist",
+    "ferritin":         "Hematologist",
+    "fasting_glucose":  "Endocrinologist",
+    "rbs":              "Endocrinologist",
+    "glucose":          "Endocrinologist",
+    "hba1c":            "Endocrinologist",
+    "tsh":              "Endocrinologist",
+    "t3":               "Endocrinologist",
+    "t4":               "Endocrinologist",
+    "total_cholesterol":"Cardiologist",
+    "ldl":              "Cardiologist",
+    "hdl":              "Cardiologist",
+    "vldl":             "Cardiologist",
+    "triglycerides":    "Cardiologist",
+    "creatinine":       "Nephrologist",
+    "bun":              "General Physician",
+    "bun_creatinine_ratio": "General Physician",
+    "osmolality":       "General Physician",
+    "total_protein":    "General Physician",
+    "albumin":          "General Physician",
+    "alkaline_phosphatase": "Gastroenterologist",
+    "magnesium":        "General Physician",
+    "chloride":         "General Physician",
+    "total_co2":        "General Physician",
+    "potassium":        "General Physician",
+    "alt":              "Gastroenterologist",
+    "ast":              "Gastroenterologist",
+    "bilirubin_total":  "Gastroenterologist",
+    "uric_acid":        "Rheumatologist",
+    "vitamin_d":        "General Physician",
+    "vitamin_b12":      "General Physician",
+    "sodium":           "General Physician",
+    "calcium":          "General Physician",
+    "esr":              "General Physician",
+    "crp":              "General Physician"
+  },
+  "priority_rules": [
+    {
+      "_note": "If creatinine is abnormal or critical, Nephrologist is indicated. Isolated elevated BUN or B/C ratio with normal creatinine routes to General Physician.",
+      "tests": ["creatinine"],
+      "condition": "any_abnormal",
+      "override_specialty": "Nephrologist"
+    },
+    {
+      "_note": "If multiple cardiac markers are abnormal, prioritise Cardiologist.",
+      "tests": ["total_cholesterol", "ldl", "hdl", "triglycerides", "vldl"],
+      "condition": "two_or_more_abnormal",
+      "override_specialty": "Cardiologist"
+    },
+    {
+      "_note": "If hemoglobin is critically low, Hematologist takes priority.",
+      "tests": ["hemoglobin"],
+      "condition": "critical",
+      "override_specialty": "Hematologist"
+    }
+  ],
+  "places_search_queries": {
+    "General Physician":   "general physician doctor clinic",
+    "Cardiologist":        "cardiologist heart specialist",
+    "Endocrinologist":     "endocrinologist diabetes thyroid specialist",
+    "Nephrologist":        "nephrologist kidney specialist",
+    "Gastroenterologist":  "gastroenterologist liver specialist",
+    "Hematologist":        "hematologist blood specialist",
+    "Dermatologist":       "dermatologist skin specialist",
+    "Neurologist":         "neurologist brain specialist",
+    "Pulmonologist":       "pulmonologist lung respiratory specialist",
+    "Orthopedic":          "orthopedic bone joint specialist",
+    "ENT":                 "ENT ear nose throat specialist",
+    "Ophthalmologist":     "ophthalmologist eye specialist",
+    "Gynecologist":        "gynecologist obstetrician",
+    "Pediatrician":        "pediatrician child specialist",
+    "Psychiatrist":        "psychiatrist mental health specialist",
+    "Urologist":           "urologist kidney bladder specialist",
+    "Rheumatologist":      "rheumatologist arthritis specialist",
+    "Dentist":             "dentist dental clinic"
+  }
+}

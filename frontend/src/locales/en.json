@@ -1,0 +1,125 @@
+﻿{
+  "app": {
+    "name": "HealthMate Compass",
+    "tagline": "Understand your health, find the right doctor."
+  },
+  "nav": {
+    "translate":   "Translate",
+    "ai_consult":  "AI Consult",
+    "find_doctor": "Find Doctor",
+    "records":     "Records",
+    "dashboard":   "Dashboard",
+    "upload":      "Upload Report",
+    "chat":        "AI Doctor",
+    "doctors":     "Find Doctors",
+    "memory":      "My Memory",
+    "history":     "History",
+    "family":      "Family",
+    "settings":    "Settings"
+  },
+  "auth": {
+    "sign_in":          "Sign In",
+    "sign_up":          "Sign Up",
+    "sign_out":         "Sign Out",
+    "email":            "Email address",
+    "password":         "Password",
+    "continue":         "Continue",
+    "or":               "or",
+    "google":           "Continue with Google",
+    "no_account":       "Don't have an account?",
+    "have_account":     "Already have an account?",
+    "forgot_password":  "Forgot password?"
+  },
+  "disclaimer": {
+    "text": "HealthMate gives information, not a diagnosis. Always consult a qualified doctor.",
+    "short": "Not a diagnosis. Consult a doctor."
+  },
+  "emergency": {
+    "banner_title":   "This sounds like a medical emergency",
+    "call_now":       "Call Rescue 1122",
+    "instruction":    "Please call Rescue 1122 immediately or go to the nearest emergency room.",
+    "number":         "1122"
+  },
+  "report": {
+    "upload_title":    "Upload Lab Report",
+    "upload_hint":     "Tap to select a photo or PDF",
+    "analyzing":       "Analyzing your report…",
+    "result_title":    "Your Report Results",
+    "summary_en":      "English Summary",
+    "summary_ur":      "Urdu Summary",
+    "questions_title": "Questions to Ask Your Doctor",
+    "flag_normal":     "Normal",
+    "flag_low":        "Low",
+    "flag_high":       "High",
+    "flag_critical":   "Critical",
+    "see_specialist":  "See a Specialist",
+    "low_confidence":  "We could not read the report clearly. Please upload a clearer photo."
+  },
+  "doctors": {
+    "find_title":      "Find Nearby Doctors",
+    "searching":       "Searching for doctors…",
+    "no_results":      "No doctors found nearby. Widening search…",
+    "open_in_maps":    "Open in Google Maps",
+    "open_now":        "Open Now",
+    "rating":          "Rating",
+    "attribution":     "Data from Google Maps",
+    "distance_m":      "{{distance}} m away",
+    "distance_km":     "{{distance}} km away"
+  },
+  "memory": {
+    "title":           "My Health Memory",
+    "fact_types": {
+      "condition":     "Condition",
+      "allergy":       "Allergy",
+      "medication":    "Medication",
+      "event":         "Event",
+      "lifestyle":     "Lifestyle"
+    },
+    "edit":            "Edit",
+    "delete":          "Delete",
+    "delete_confirm":  "Delete this fact? It will no longer affect your AI responses.",
+    "empty":           "No health facts saved yet."
+  },
+  "chat": {
+    "placeholder":     "Describe your symptoms or ask a question…",
+    "send":            "Send",
+    "new_session":     "New Chat",
+    "thinking":        "AI is thinking…",
+    "retry_msg":       "Servers are busy — retrying…"
+  },
+  "status": {
+    "uploading":       "Uploading…",
+    "processing":      "Processing…",
+    "ready":           "Ready",
+    "error":           "Error",
+    "loading":         "Loading…"
+  },
+  "family": {
+    "title":           "Family Profiles",
+    "add":             "Add Member",
+    "relation": {
+      "self":          "Self",
+      "spouse":        "Spouse",
+      "parent":        "Parent",
+      "child":         "Child",
+      "other":         "Other"
+    }
+  },
+  "settings": {
+    "title":           "Settings",
+    "language":        "Language",
+    "language_en":     "English",
+    "language_ur":     "اردو",
+    "delete_data":     "Delete All My Data",
+    "delete_confirm":  "This will permanently delete all your patients, reports, and memory. This cannot be undone.",
+    "delete_button":   "Delete Everything"
+  },
+  "errors": {
+    "generic":         "Something went wrong. Please try again.",
+    "network":         "Network error. Please check your connection.",
+    "rate_limit":      "Servers are busy. Retrying…",
+    "no_location":     "Location access denied. Please type your city name.",
+    "file_too_large":  "File is too large. Maximum size is 10 MB.",
+    "unsupported_file":"Please upload a JPG, PNG, or PDF file."
+  }
+}

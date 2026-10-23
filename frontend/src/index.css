@@ -1,0 +1,159 @@
+﻿/* ─────────────────────────────────────────────────────────────────────────────
+   HealthMate Compass — Global CSS
+   Design system: Clinical Calm (see /design/clinical_calm/DESIGN.md)
+   Mobile-first. All spacing uses CSS logical properties for RTL parity.
+   ───────────────────────────────────────────────────────────────────────────── */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Nastaliq+Urdu:wght@500;700&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Base resets ──────────────────────────────────────────────────────────── */
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    /* Use 100dvh (dynamic viewport height) to avoid mobile browser chrome overlap */
+    height: 100%;
+  }
+
+  body {
+    @apply bg-app-bg text-trust-navy font-sans;
+    min-height: 100dvh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Prevent horizontal scroll at any width */
+    overflow-x: hidden;
+  }
+
+  /* Urdu text rendering — applied when lang="ur" on a parent element */
+  [lang='ur'], .font-urdu {
+    font-family: 'Noto Nastaliq Urdu', 'Urdu Typesetting', serif;
+    /* +20% line-height for tall Nastaliq ascenders/descenders */
+    line-height: 1.8;
+    direction: rtl;
+    text-align: right;
+  }
+
+  /* Tabular lining figures for lab values and dosages */
+  .tabular {
+    font-variant-numeric: tabular-nums lining-nums;
+  }
+
+  /* Ensure flex children with text don't overflow */
+  .min-w-0 {
+    min-width: 0;
+  }
+}
+
+/* ── Component layer ──────────────────────────────────────────────────────── */
+@layer components {
+
+  /* ─── Buttons ──────────────────────────────────────────────────────────── */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2
+           bg-teal text-white font-semibold rounded-md
+           px-space-lg h-tap
+           transition-colors duration-150 ease-in-out
+           hover:bg-teal-hover active:bg-teal-hover
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal focus-visible:ring-offset-2
+           disabled:opacity-50 disabled:pointer-events-none;
+    min-width: 44px; /* tap target */
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2
+           bg-white text-trust-navy font-semibold rounded-md
+           px-space-lg h-tap border border-divider
+           transition-colors duration-150 ease-in-out
+           hover:bg-app-bg active:bg-app-bg
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal focus-visible:ring-offset-2
+           disabled:opacity-50 disabled:pointer-events-none;
+  }
+
+  .btn-emergency {
+    @apply inline-flex items-center justify-center gap-2
+           bg-status-critical-text text-white font-semibold rounded-md
+           px-space-lg h-tap
+           transition-colors duration-150 ease-in-out
+           hover:bg-red-700 active:bg-red-800
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 focus-visible:ring-offset-2;
+  }
+
+  /* ─── Cards ────────────────────────────────────────────────────────────── */
+  .card {
+    @apply bg-white rounded-lg border border-divider shadow-level-1 p-space-md;
+  }
+
+  .card-interactive {
+    @apply card shadow-level-2 border-slate-200
+           transition-shadow duration-150 hover:shadow-level-2;
+  }
+
+  /* ─── Form inputs ──────────────────────────────────────────────────────── */
+  .input {
+    @apply w-full h-tap bg-white border border-divider rounded-md
+           px-space-md text-body-md text-trust-navy placeholder:text-muted-slate
+           transition-colors duration-150
+           focus:outline-none focus:border-teal focus:ring-2 focus:ring-teal/20;
+  }
+
+  /* ─── Medical status chips ─────────────────────────────────────────────── */
+  /* Status chips MUST always include an icon AND text label, never color alone */
+  .chip {
+    @apply inline-flex items-center gap-1 px-2.5 py-1 rounded-full
+           text-label-md font-medium;
+  }
+  .chip-normal   { @apply chip bg-status-normal-bg   text-status-normal-text; }
+  .chip-low      { @apply chip bg-status-low-bg      text-status-low-text; }
+  .chip-high     { @apply chip bg-status-high-bg     text-status-high-text; }
+  .chip-critical { @apply chip bg-status-critical-bg text-status-critical-text; }
+
+  /* ─── Emergency banner ────────────────────────────────────────────────── */
+  .emergency-banner {
+    @apply flex items-start gap-3 rounded-lg border border-red-300
+           bg-status-critical-bg shadow-emergency p-space-md;
+  }
+
+  /* ─── Disclaimer ──────────────────────────────────────────────────────── */
+  .disclaimer {
+    @apply text-body-sm text-secondary-slate border-s-2 border-slate-300
+           ps-space-sm mt-space-md;
+  }
+
+  /* ─── Sidebar (desktop) ───────────────────────────────────────────────── */
+  .sidebar {
+    @apply fixed inset-y-0 inset-inline-start-0 w-sidebar bg-white border-e border-divider
+           flex flex-col z-30 overflow-y-auto;
+  }
+
+  /* ─── Bottom navigation (mobile) ─────────────────────────────────────── */
+  .bottom-nav {
+    @apply fixed inset-x-0 bottom-0 h-bottom-nav bg-white border-t border-divider
+           flex items-center justify-around z-30;
+  }
+
+  /* ─── Loading skeleton ─────────────────────────────────────────────────── */
+  .skeleton {
+    @apply animate-pulse bg-surface-container rounded;
+  }
+}
+
+/* ── Utilities ────────────────────────────────────────────────────────────── */
+@layer utilities {
+  /* RTL-aware border helper (logical properties) */
+  .border-s { border-inline-start-width: 1px; }
+  .border-e { border-inline-end-width: 1px; }
+  .ps-space-sm { padding-inline-start: 0.5rem; }
+  .pe-space-sm { padding-inline-end: 0.5rem; }
+  .ms-auto { margin-inline-start: auto; }
+  .me-auto { margin-inline-end: auto; }
+
+  /* Dynamic viewport height for full-screen layouts */
+  .h-dvh  { height: 100dvh; }
+  .min-h-dvh { min-height: 100dvh; }
+}
