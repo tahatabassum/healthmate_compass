@@ -22,9 +22,10 @@ python-jose[cryptography]==3.3.0  # JWT verification (Supabase JWT)
 pydantic==2.9.2
 pydantic-settings==2.6.1       # load settings from .env
 
-# ── PDF handling (no PyTorch / EasyOCR) ──────────────────────────────────────
+# ── PDF & Image handling (no PyTorch / EasyOCR) ──────────────────────────────
 pypdf==5.0.1                   # text-based PDFs
 pymupdf==1.24.13               # rasterize scanned PDFs to images (low memory)
+Pillow==10.4.0                 # image preprocessing and orientation (PIL)
 
 # ── HTTP ─────────────────────────────────────────────────────────────────────
 httpx==0.27.2                  # async HTTP (used by supabase-py and direct calls)
