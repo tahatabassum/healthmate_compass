@@ -34,11 +34,11 @@ from app.services.flags import process_extracted_values, check_patient_name_mism
 logger = logging.getLogger(__name__)
 
 
-def preprocess_image(file_bytes: bytes, max_dim: int = 1280) -> Tuple[bytes, str]:
+def preprocess_image(file_bytes: bytes, max_dim: int = 1024) -> Tuple[bytes, str]:
     """
     Preprocesses an image:
     1. EXIF auto-rotation (fixes camera orientation from phone uploads).
-    2. Resizes maintaining aspect ratio if dimension exceeds max_dim (1280px optimal for OCR).
+    2. Resizes maintaining aspect ratio (1024px is fast and accurate for OCR).
     3. Converts to RGB and optimizes JPEG compression.
     """
     try:
@@ -59,7 +59,7 @@ def preprocess_image(file_bytes: bytes, max_dim: int = 1280) -> Tuple[bytes, str
             img = img.convert("RGB")
 
         out_buf = io.BytesIO()
-        img.save(out_buf, format="JPEG", quality=85, optimize=True)
+        img.save(out_buf, format="JPEG", quality=80, optimize=True)
         return out_buf.getvalue(), "image/jpeg"
     except Exception as e:
         logger.warning(f"Image preprocessing fallback to raw bytes: {e}")

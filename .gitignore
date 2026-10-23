@@ -10,6 +10,7 @@
 # ─── Reference & Internal Brain Files ─────────────────────────────────────────
 stitch_healthmate_compass_app/
 brain.md
+DEMO_AND_ARCHITECTURE.md
 
 # ─── Python ───────────────────────────────────────────────────────────────────
 __pycache__/

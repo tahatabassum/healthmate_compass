@@ -1,17 +1,18 @@
 # HealthMate Compass 🧭
 
+> **An AI-powered diagnostic lab and prescription explainer, symptom triage assistant, and nearby specialist router with permanent cross-session health memory.**
+
+**Core AI Model:** Powered by Google's **Gemma 4** (`gemma-4-26b-a4b-it`) running through the official **Gemini API** (with OpenRouter fallback). Gemma 4 is released under the **[Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0)**.
+
 [![Python 3.11](https://img.shields.io/badge/Python-3.11-blue.svg)](https://www.python.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.115+-009688.svg)](https://fastapi.tiangolo.com/)
 [![LangGraph](https://img.shields.io/badge/LangGraph-1.2.16-orange.svg)](https://langchain-ai.github.io/langgraph/)
-[![Gemma 4](https://img.shields.io/badge/Model-Gemma%204%20(26B/31B)-4285F4.svg)](https://ai.google.dev/gemma)
+[![Model: Gemma 4](https://img.shields.io/badge/Model-Gemma%204%20(Apache%202.0)-4285F4.svg)](https://www.apache.org/licenses/LICENSE-2.0)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Supabase](https://img.shields.io/badge/Database-Supabase%20%2B%20pgvector-3ECF8E.svg)](https://supabase.com/)
 [![React 18](https://img.shields.io/badge/Frontend-React%2018%20%2B%20Vite%20%2B%20TS-61DAFB.svg)](https://react.dev/)
 [![Agent Skills v1.0](https://img.shields.io/badge/Agent%20Skills-v1.0%20Compliant-purple.svg)](https://agentskills.io)
 [![Tests Passing](https://img.shields.io/badge/Tests-64%2F64%20Passed-success.svg)](backend/tests/)
-
-> **AI Diagnostic Lab & Prescription Explainer, Doctor Symptom Triage with LangGraph, Real Nearby Specialist Routing, and Permanent Cross-Chat Health Memory.**
-
-HealthMate Compass bridges the critical gap between complex medical documents and patient comprehension. Built with **Gemma 4**, **LangGraph**, and **Supabase pgvector**, it provides high-accuracy diagnostic report translation, prescription schedule extraction with allergy conflict detection, safe symptom triage, verified clinic discovery, and permanent cross-session memory without LLM hallucinations.
 
 ---
 
