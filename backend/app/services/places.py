@@ -90,12 +90,15 @@ def store_cached_doctors(cache_key: str, results: List[dict]) -> None:
     try:
         now = datetime.now(timezone.utc)
         expires_at = (now + timedelta(hours=24)).isoformat()
-        supabase.table("doctor_cache").upsert({
-            "cache_key": cache_key,
-            "results": results,
-            "created_at": now.isoformat(),
-            "expires_at": expires_at,
-        }).execute()
+        supabase.table("doctor_cache").upsert(
+            {
+                "cache_key": cache_key,
+                "results": results,
+                "created_at": now.isoformat(),
+                "expires_at": expires_at,
+            },
+            on_conflict="cache_key",
+        ).execute()
     except Exception as e:
         logger.warning(f"Failed to store results in doctor_cache: {e}")
 
