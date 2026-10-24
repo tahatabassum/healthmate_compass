@@ -21,6 +21,7 @@ def get_supabase_admin() -> Optional[Client]:
         logger.warning(
             "SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY is not set. Supabase client unavailable."
         )
+        return None
     url = settings.SUPABASE_URL.strip().rstrip('/')
     if url.endswith('/rest/v1'):
         url = url[:-8]
