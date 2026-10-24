@@ -16,7 +16,8 @@ langchain-core==1.6.12         # required by langgraph 1.x (>=1.4.7,<2)
 
 # ── Supabase ─────────────────────────────────────────────────────────────────
 supabase==2.10.0               # supabase-py (Postgres + Auth + Storage)
-python-jose[cryptography]==3.3.0  # JWT verification (Supabase JWT)
+python-jose[cryptography]==3.3.0  # JWT verification (legacy HS256)
+PyJWT[crypto]>=2.8.0           # JWKS asymmetric JWT verification (ES256/RS256)
 
 # ── Pydantic ─────────────────────────────────────────────────────────────────
 pydantic==2.9.2

@@ -30,17 +30,20 @@ app = FastAPI(
 )
 
 # CORS configuration
-cors_origins = list(settings.CORS_ORIGINS)
-if settings.FRONTEND_URL and settings.FRONTEND_URL not in cors_origins:
-    cors_origins.append(settings.FRONTEND_URL)
+raw_origins = list(settings.CORS_ORIGINS)
+if settings.FRONTEND_URL:
+    raw_origins.append(settings.FRONTEND_URL.strip().rstrip("/"))
+raw_origins.append("https://healthmate-compass.vercel.app")
+cors_origins = list(dict.fromkeys([o.rstrip("/") for o in raw_origins if o]))
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=cors_origins,
-    allow_origin_regex=r"https://.*\.vercel\.app",
+    allow_origin_regex=r"^https://[a-zA-Z0-9\-]+(\.vercel\.app|\.onrender\.com)(:\d+)?$",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
+    expose_headers=["*"],
 )
 
 # Routers
@@ -55,6 +58,71 @@ app.include_router(chat.router)
 async def health() -> dict:
     """Liveness probe. Returns 200 immediately without external calls."""
     return {"status": "ok", "version": app.version, "environment": settings.ENVIRONMENT}
+
+
+@app.get("/health/auth", tags=["meta"])
+async def health_auth() -> dict:
+    """
+    Diagnostic probe for authentication configuration.
+    Reports which required/optional auth variables are present (NAMES ONLY, NEVER VALUES)
+    and whether Supabase client and JWKS can be contacted.
+    """
+    from app.core.supabase import get_supabase_admin
+    from app.core.security import get_jwks_client
+
+    env_vars = {
+        "SUPABASE_URL": bool(settings.SUPABASE_URL),
+        "SUPABASE_ANON_KEY": bool(settings.SUPABASE_ANON_KEY),
+        "SUPABASE_SERVICE_ROLE_KEY": bool(settings.SUPABASE_SERVICE_ROLE_KEY),
+        "SUPABASE_JWT_SECRET": bool(settings.SUPABASE_JWT_SECRET),
+        "FRONTEND_URL": bool(settings.FRONTEND_URL),
+    }
+
+    all_required_present = bool(
+        settings.SUPABASE_URL and settings.SUPABASE_ANON_KEY and settings.SUPABASE_SERVICE_ROLE_KEY
+    )
+
+    admin_client_ok = False
+    supabase_reachable = False
+    try:
+        supabase = get_supabase_admin()
+        if supabase is not None:
+            admin_client_ok = True
+            res = supabase.table("patients").select("id").limit(1).execute()
+            supabase_reachable = True
+    except Exception as e:
+        logger.debug("Health auth check supabase ping: %s", e)
+
+    jwks_client_ok = False
+    jwks_keys_count = 0
+    try:
+        jwks = get_jwks_client()
+        if jwks is not None:
+            keys = jwks.get_signing_keys()
+            jwks_client_ok = True
+            jwks_keys_count = len(keys)
+    except Exception as e:
+        logger.debug("Health auth check jwks ping: %s", e)
+
+    methods = []
+    if jwks_client_ok:
+        methods.append("jwks_asymmetric (ES256/RS256)")
+    if settings.SUPABASE_JWT_SECRET:
+        methods.append("legacy_hs256_secret")
+    if admin_client_ok:
+        methods.append("supabase_auth_api_fallback")
+
+    return {
+        "status": "ok" if (all_required_present and admin_client_ok) else "degraded",
+        "environment": settings.ENVIRONMENT,
+        "auth_configured": all_required_present,
+        "variables_present": env_vars,
+        "supabase_admin_client_initialized": admin_client_ok,
+        "supabase_reachable": supabase_reachable,
+        "jwks_client_initialized": jwks_client_ok,
+        "jwks_cached_keys": jwks_keys_count,
+        "verification_methods": methods,
+    }
 
 
 @app.get("/health/deep", tags=["meta"])
